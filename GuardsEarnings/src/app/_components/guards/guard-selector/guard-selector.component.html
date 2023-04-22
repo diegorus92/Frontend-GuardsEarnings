@@ -1,0 +1,8 @@
+<mat-form-field appearance="fill">
+  <mat-label>Choose an option</mat-label>
+  <mat-select>
+    <div *ngFor="let guard of guards" >
+        <mat-option [value]="guard.guardId" (click)="onSelect(guard)">{{guard.name}}</mat-option> 
+    </div>
+  </mat-select>
+</mat-form-field>

@@ -3,14 +3,28 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { GuardSelectorComponent } from './_components/guards/guard-selector/guard-selector.component';
+import { HttpClientModule } from '@angular/common/http';
+import {MatSelectModule} from '@angular/material/select';
+
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GuardSelectorComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatSlideToggleModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
