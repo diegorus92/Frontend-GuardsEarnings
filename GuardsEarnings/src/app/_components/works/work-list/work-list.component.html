@@ -1,0 +1,20 @@
+<p>work-list works!</p>
+<!-- <p *ngFor="let work of works">{{work.workId}}:{{work.journey.date}} -- {{work.target.name}}</p> -->
+
+<div *ngIf="works">
+    <ul *ngFor="let work of works">
+        <li>Year: {{work.year}}</li>
+
+        <ul *ngFor="let month of work.months">
+            <li>Month: {{month.month}}</li>
+
+            <ul *ngFor="let data of month.datas">
+                <li>Work Data: {{data.workId}} -- {{data.target.name}} / {{data.enterTime}}Hs - {{data.outTime}}Hs / payment x Hs: {{data.target.payment}}</li>
+                <p><b>Total Hours: {{calculateWorkingTime(data.enterTime, data.outTime)}}</b> -- <i>$ {{calculatePayPerDay(calculateWorkingTime(data.enterTime, data.outTime), data.target.payment)}}</i></p>
+            </ul>
+            
+            <p>Total Earning = $ {{calculateMonthlyEarning(month)}}</p>
+        </ul>
+    </ul>
+
+</div>

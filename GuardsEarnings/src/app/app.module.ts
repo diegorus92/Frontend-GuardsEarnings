@@ -9,13 +9,19 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { GuardSelectorComponent } from './_components/guards/guard-selector/guard-selector.component';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule} from '@angular/material/button';
+import { GuardComponent } from './_components/guards/guard/guard.component';
+import { WorkListComponent } from './_components/works/work-list/work-list.component';
+
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GuardSelectorComponent
+    GuardSelectorComponent,
+    GuardComponent,
+    WorkListComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,8 @@ import {MatSelectModule} from '@angular/material/select';
     MatSlideToggleModule,
     FontAwesomeModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

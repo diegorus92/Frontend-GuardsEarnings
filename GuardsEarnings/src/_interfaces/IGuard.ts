@@ -6,5 +6,5 @@ export interface Guard{
     Cellphone?:string,
     Image?:any,
     Direction:string
-    works?:any[]
+    Works?:any[]
 }

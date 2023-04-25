@@ -10,6 +10,16 @@ import { GuardService } from 'src/app/_services/guard.service';
 export class GuardSelectorComponent implements OnInit {
 
   guards:any[] = [];
+  guardSelected:Guard = {
+    GuardId: 0,
+    Name: "string",
+    Surname: "string",
+    Email: "string",
+    Cellphone: "string",
+    Image: null,
+    Direction: "string",
+    Works: []
+  };
 
   constructor(private guardService:GuardService) { }
 
@@ -32,5 +42,16 @@ export class GuardSelectorComponent implements OnInit {
 
   onSelect(guard:any):void{
     console.log("Guard selected: ", guard);
+    this.guardSelected = {
+      GuardId: guard.guardId,
+      Name: guard.name,
+      Surname: guard.surname,
+      Email: guard.email,
+      Cellphone: guard.cellphone,
+      Image: guard.image,
+      Direction: guard.direction,
+      Works: guard.works
+    }
+    console.log("Guard type: ", this.guardSelected);
   }
 }

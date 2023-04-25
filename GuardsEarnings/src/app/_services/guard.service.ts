@@ -16,4 +16,8 @@ export class GuardService {
   getGuards():Observable<any>{
     return this.http.get(this._url+"Guards");
   }
+
+  getGuard(id:number):Observable<any>{
+    return this.http.get(this._url+"Guards/"+id);
+  }
 }

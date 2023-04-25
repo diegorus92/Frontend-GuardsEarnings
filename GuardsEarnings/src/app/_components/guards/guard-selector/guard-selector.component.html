@@ -6,3 +6,8 @@
     </div>
   </mat-select>
 </mat-form-field>
+
+<button 
+    mat-raised-button color="accent" [routerLink]="['/guard']" [queryParams]="{id: guardSelected.GuardId}"
+    >
+    View Guard</button>
