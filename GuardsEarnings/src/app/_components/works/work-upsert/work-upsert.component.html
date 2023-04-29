@@ -1,0 +1,47 @@
+<p>work-upsert works!</p>
+<p>Guard ID: {{guardId}} / Nombre Guardia</p>
+
+<form [formGroup]="workForm" (ngSubmit)="onSubmit($event)">
+
+    <!--Date-->
+    <div>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="journeyDate">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
+
+    <!--In/Out Time-->
+    <div class="in-out">
+        <mat-form-field class="example-form-field">
+            <mat-label>Guard Entrance</mat-label>
+            <input matInput type="time" formControlName="enterTime">
+        </mat-form-field>
+
+        <mat-form-field class="example-form-field">
+            <mat-label>Guard Exit</mat-label>
+            <input matInput type="time" formControlName="outTime">
+        </mat-form-field>
+    </div>
+
+    <!--Objective selector-->
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Select Target</mat-label>
+            <mat-select formControlName="target">
+              <mat-option *ngFor="let target of targets" [value]="target" >
+                {{target.name}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>  
+    </div>
+
+    <button mat-raised-button color="accent" type="submit">Save</button>
+</form>
+
+<button mat-raised-button color="accent" [routerLink]="['/guard']" [queryParams]="{id:guardId}">Back to work list</button>

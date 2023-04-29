@@ -2,6 +2,11 @@
 <p>Name: {{guard.Name}}</p>
 
 <hr>
+<button mat-raised-button color="accent"
+[routerLink]="['/work-upsert']" [queryParams]="{guard_id: guardId}"
+>
+    Add work day
+</button>
 
 <div *ngIf="processedWorksDates">
     <app-work-list [works]="processedWorksDates"></app-work-list>

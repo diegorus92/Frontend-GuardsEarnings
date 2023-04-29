@@ -11,7 +11,7 @@ export class WorkListComponent implements OnInit {
   constructor() { }
 
   @Input() works = null;
-
+  displayedColumns:string[] = ['Date', 'Target', 'Income', 'Outcome', 'Payment per Hour', 'Total Hours', 'Payment this Journey'];
 
   ngOnInit(): void {
     
@@ -19,34 +19,36 @@ export class WorkListComponent implements OnInit {
 
   
 
-  private separateTimePart(stringTime:string):string[]{
-    let out = stringTime.split(":");
-    return out;
+  private separateTimeParts(timeString:string):number[]{
+    return timeString.split(':').map(item => Number(item));
   }
 
-  calculateWorkingTime(enter:string, out:string):number{
-    const minutesPerHour = 60;
-    const hoursPerDay = 24;
-    let splitedEnter = this.separateTimePart(enter);
-    let splitedOut = this.separateTimePart(out);
+  private calculateHours(entranceHours:number, outHours:number):number{
+    let limit = 24;
+    let acum = 0;
+    let counter = entranceHours;
 
-    let enterHour = Number(splitedEnter[0]);
-    let enterMinutes = Number(splitedEnter[1]);
-    let outHour = Number(splitedOut[0]);
-    let outMinutes = Number(splitedOut[1]);
-
-    let totalHours = 0;
-
-    enterHour *= minutesPerHour - (enterMinutes);
-    outHour *= minutesPerHour - (outMinutes);
-
-    if(enterHour > outHour) enterHour -= (hoursPerDay * 60);
-    else outHour -= (hoursPerDay * 60);
+    do{
+        if(counter == limit)
+            counter = 0;
+        counter++;
+        acum++;
+    }while(counter != outHours);
     
+    return acum;
+  }
 
-    totalHours = (enterHour - outHour)/ minutesPerHour;
+  private calculateMinutes(entranceMinutes:number, outMinutes:number):number{
+    return (entranceMinutes + outMinutes) / 60;
+  }
 
-    return totalHours < 0 ? totalHours * (-1): totalHours;
+  calculateWorkingTime(enterTime:string, outTime:string):number{
+    let separatedEntrance = this.separateTimeParts(enterTime);
+    let separatedOut = this.separateTimeParts(outTime);
+    let hours = this.calculateHours(separatedEntrance[0], separatedOut[0]);
+    let minutes = this.calculateMinutes(separatedEntrance[1], separatedOut[1]);
+
+    return separatedEntrance[1] > separatedOut[1] ? (hours - minutes):(hours + minutes) ;  
   }
 
   calculatePayPerDay(workedHours:number, payPerHours:number):number{
@@ -58,6 +60,16 @@ export class WorkListComponent implements OnInit {
 
     for(let journey of monthWorked.datas){
       acum += this.calculatePayPerDay(this.calculateWorkingTime(journey.enterTime, journey.outTime), journey.target.payment);
+    }
+
+    return acum;
+  }
+
+  calculateMonthlyHours(monthWorked:any):number{
+    let acum = 0;
+
+    for(let journey of monthWorked.datas){
+      acum += this.calculateWorkingTime(journey.enterTime, journey.outTime);
     }
 
     return acum;
