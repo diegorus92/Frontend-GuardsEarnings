@@ -57,7 +57,10 @@
                     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
                 </table>
                   
-                <p>Total Earning = {{calculateMonthlyEarning(month) | currency}}  --  Total Hours: {{calculateMonthlyHours(month)}}</p>   
+                <p class="totals-month">
+                    <b>Total Earning</b>= <span>{{calculateMonthlyEarning(month) | currency}}</span>
+                    <b>Total Hours</b>: <span>{{calculateMonthlyHours(month)}}</span>
+                </p>   
 
             </mat-tab>
         </mat-tab-group>

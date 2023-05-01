@@ -1,0 +1,44 @@
+<h2>Add/Edit Guard</h2>
+
+<form *ngIf="guardForm" [formGroup]="guardForm" (ngSubmit)="onSubmit($event)">
+    
+    <!--Name-->
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="Name">
+    </mat-form-field>
+
+    <!--Surname-->
+    <mat-form-field appearance="fill">
+        <mat-label>Surname</mat-label>
+        <input matInput formControlName="Surname">
+    </mat-form-field>
+
+    <!--Email-->
+    <div class="example-container">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="pat@example.com" formControlName="Email" email>
+          <mat-error *ngIf="this.guardForm.controls['Email'].hasError('email')">{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+    </div>
+
+    <!--Cellphone-->
+    <div>
+        <mat-form-field appearance="fill">
+            <mat-label>Cellphone</mat-label>
+            <input matInput formControlName="Cellphone" type="number">
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-hint>Include area code</mat-hint>
+        </mat-form-field>
+    </div>
+
+    <!--Direction-->
+    <mat-form-field appearance="fill">
+        <mat-label>Direction</mat-label>
+        <input matInput formControlName="Direction">
+    </mat-form-field>
+
+
+    <button mat-raised-button color="accent">Create</button>
+</form>

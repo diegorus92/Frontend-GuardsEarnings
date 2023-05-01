@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class WorkService {
 
-  private _url = environment.baseUrl;
+  private _url = environment.baseUrl+"Works";
 
   constructor(private http:HttpClient) { }
 
 
   createWork(work:any):Observable<any>{
-    return this.http.post(this._url+"Works/", work, {responseType: 'text'});
+    return this.http.post(this._url+"/", work, {responseType: 'text'});
   }
 }

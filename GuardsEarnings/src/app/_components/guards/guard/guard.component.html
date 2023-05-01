@@ -8,6 +8,10 @@
     Add work day
 </button>
 
+<button mat-raised-button color="primary" [routerLink]="['/guard/selector']">
+    Back to guard selector
+</button>
+
 <div *ngIf="processedWorksDates">
     <app-work-list [works]="processedWorksDates"></app-work-list>
 </div>

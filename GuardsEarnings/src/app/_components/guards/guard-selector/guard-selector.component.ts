@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Guard } from 'src/_interfaces/IGuard';
 import { GuardService } from 'src/app/_services/guard.service';
 
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Guards } from 'src/assets/MockGuards';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { Router } from '@angular/router';
+import { DialogAlertComponent } from 'src/app/shared/dialog-alert/dialog-alert.component';
+
 @Component({
   selector: 'app-guard-selector',
   templateUrl: './guard-selector.component.html',
@@ -9,7 +15,7 @@ import { GuardService } from 'src/app/_services/guard.service';
 })
 export class GuardSelectorComponent implements OnInit {
 
-  guards:any[] = [];
+  guards:any[] = [];//Guards;
   guardSelected:Guard = {
     GuardId: 0,
     Name: "string",
@@ -21,7 +27,9 @@ export class GuardSelectorComponent implements OnInit {
     Works: []
   };
 
-  constructor(private guardService:GuardService) { }
+  addIcon = faPlus;
+
+  constructor(private guardService:GuardService, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getGuards();
@@ -54,4 +62,39 @@ export class GuardSelectorComponent implements OnInit {
     }
     console.log("Guard type: ", this.guardSelected);
   }
+
+  private deleteGuard(id:number):void{
+    if(id && id != 0){
+      console.log("[GuardSelectorComponent] Guard (ID:"+id+") its going to be deleted");
+      this.guardService.deleteGuard(id).subscribe({
+        next: response =>{
+          console.log("[GuardUpsertComponent] Deleting Guard: ", response);
+        },
+        error: error => console.log("[GuardUpsertComponent] error during Delete: ", error),
+        complete: () => {
+          console.log("[GuardUpsertComponent] Guard Deleted!");
+          this.getGuards();
+        }
+      })
+    }
+    else
+      alert("[GuardSelectorComponent] no guard has been selected");
+  }
+
+  openDialog(id:number): void {
+    let dialog = this.dialog.open(DialogAlertComponent);
+    dialog.componentInstance.asset = "Guard";
+
+    dialog.afterClosed().subscribe(selection => {
+      if(selection){
+        console.log("[GuardSelectorCOmponent] Choose AFFIRMATIVE in Dialog");
+        this.deleteGuard(id);
+      }
+      else{
+        console.log("[GuardSelectorCOmponent] Choose NEGATIVE in Dialog");
+      }
+    })
+  }
 }
+
+

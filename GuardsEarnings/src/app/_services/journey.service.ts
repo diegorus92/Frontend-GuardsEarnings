@@ -9,12 +9,12 @@ import { environment } from 'src/environments/environment';
 })
 export class JourneyService {
 
-  private _url = environment.baseUrl;
+  private _url = environment.baseUrl+"Journeys";
 
   constructor(private http:HttpClient) { }
 
 
   createJourney(journey:Journey):Observable<any>{
-    return this.http.post(this._url+"Journeys", journey);
+    return this.http.post(this._url, journey);
   }
 }

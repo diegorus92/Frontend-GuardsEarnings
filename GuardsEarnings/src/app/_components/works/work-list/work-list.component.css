@@ -1,3 +1,18 @@
 table {
     width: 100%;
   }
+
+.totals-month{
+  margin-top: 5%;
+  font-size: 1.5rem;
+}
+
+.totals-month b{
+  text-decoration: underline;
+}
+
+.totals-month span{
+  margin-right: 5%;
+  font-weight: bolder;
+  color:green;
+}

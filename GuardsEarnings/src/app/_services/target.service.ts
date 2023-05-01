@@ -9,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class TargetService {
 
-  private _url = environment.baseUrl;
+  private _url = environment.baseUrl+"Targets";
   private _targetsSubject = new BehaviorSubject<any[]>([]);
 
 
@@ -24,6 +24,6 @@ export class TargetService {
   }
 
   getTargets():Observable<any>{
-    return this.http.get(this._url+"Targets");
+    return this.http.get(this._url);
   }
 }

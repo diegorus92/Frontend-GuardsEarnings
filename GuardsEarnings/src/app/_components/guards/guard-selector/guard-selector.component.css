@@ -1,0 +1,12 @@
+div{
+    margin-top: 5%;
+}
+
+span{
+    margin-left: 2%;
+    font-size: 1.5rem;
+}
+
+fa-icon:hover{
+    color: blue;
+}

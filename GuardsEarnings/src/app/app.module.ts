@@ -16,6 +16,9 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
+
 
 
 
@@ -26,6 +29,8 @@ import { WorkUpsertComponent } from './_components/works/work-upsert/work-upsert
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { PrincipalComponent } from './_components/principal/principal/principal.component';
+import { GuardUpsertComponent } from './_components/guards/guard-upsert/guard-upsert.component';
+import { DialogAlertComponent } from './shared/dialog-alert/dialog-alert.component';
 
 
 
@@ -37,7 +42,9 @@ import { PrincipalComponent } from './_components/principal/principal/principal.
     GuardComponent,
     WorkListComponent,
     WorkUpsertComponent,
-    PrincipalComponent
+    PrincipalComponent,
+    GuardUpsertComponent,
+    DialogAlertComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,7 +63,9 @@ import { PrincipalComponent } from './_components/principal/principal/principal.
     MatNativeDateModule,
     MatSelectModule,
     MatTabsModule,
-    MatTableModule
+    MatTableModule,
+    MatFormFieldModule,
+    MatDialogModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}

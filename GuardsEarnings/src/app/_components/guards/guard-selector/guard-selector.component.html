@@ -1,13 +1,29 @@
-<mat-form-field appearance="fill">
-  <mat-label>Choose an option</mat-label>
-  <mat-select>
-    <div *ngFor="let guard of guards" >
-        <mat-option [value]="guard.guardId" (click)="onSelect(guard)">{{guard.name}}</mat-option> 
-    </div>
-  </mat-select>
-</mat-form-field>
+<div>
+  <fa-icon [icon]="addIcon" class="fa-3x" [routerLink]="['/guard-upsert']"></fa-icon>
+  <span>Add new guard</span>
+</div>
 
-<button 
-    mat-raised-button color="accent" [routerLink]="['/guard']" [queryParams]="{id: guardSelected.GuardId}"
+<div>
+    <mat-form-field appearance="fill">
+    <mat-label>Choose an option</mat-label>
+    <mat-select>
+      <div *ngFor="let guard of guards" >
+          <mat-option [value]="guard.guardId" (click)="onSelect(guard)">{{guard.name}}</mat-option> 
+      </div>
+    </mat-select>
+  </mat-form-field>
+
+  <button 
+      mat-raised-button color="primary" [routerLink]="['/guard']" [queryParams]="{id: guardSelected.GuardId}"
     >
-    View Guard</button>
+      View Guard
+  </button>
+  <button mat-raised-button color="accent" [routerLink]="['/guard-upsert']" [queryParams]="{id: guardSelected.GuardId}"
+    >
+      Edit Guard
+  </button>
+
+  <!--Delete Dialog-->
+  <button mat-raised-button color="warn" (click)="openDialog(guardSelected.GuardId)">Delete Guard</button>
+  <!--<button mat-raised-button color="warn" (click)="deleteGuard(guardSelected.GuardId)">Delete Guard</button>-->
+</div>
