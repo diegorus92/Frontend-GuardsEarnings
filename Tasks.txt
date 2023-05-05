@@ -1,0 +1,5 @@
+-add Edit and Remove for Works into WorkList
+
+-Implement verification about create a new item (Work, Guard...etc)
+
+-Implement security

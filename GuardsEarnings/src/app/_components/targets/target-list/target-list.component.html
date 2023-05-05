@@ -1,0 +1,11 @@
+<h1>Targets</h1>
+
+<fa-icon
+    [icon]="addIcon"
+    class="fa-3x"
+    [routerLink]="['/target-upsert']"
+></fa-icon>
+
+<div class="target-list" *ngFor="let target of targets">
+    <app-target [target]="target" (targetRemoveEvent)="deleteGuard($event)"></app-target>
+</div>

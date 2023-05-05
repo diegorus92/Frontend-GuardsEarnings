@@ -1,0 +1,31 @@
+<div class="container">
+    <mat-card class="example-card">
+        <mat-card-header>
+          <mat-card-title-group>
+            <mat-card-title>{{target.Name}}</mat-card-title>
+            <mat-card-subtitle>{{target.Type}}</mat-card-subtitle>
+          </mat-card-title-group>
+        </mat-card-header>
+        <mat-card-content>
+            <p><i>{{target.Direction}}</i></p>
+            <div class="emphasis">
+                <p>{{target.Payment | currency}} <b>per Hour</b></p>
+            </div>
+          {{target.Notes}}
+        </mat-card-content>
+    </mat-card>
+
+    <div class="icons">
+        <fa-icon 
+          [icon]="editIcon" 
+          class="fa-2x edit-icon"
+          [routerLink]="['/target-upsert']" [queryParams]="{id: target.TargetId}"
+        ></fa-icon>
+        <fa-icon 
+          [icon]="removeIcon" 
+          class="fa-2x remove-icon"
+          (click)="deleteGuard(target.TargetId!)"
+        ></fa-icon>
+    </div>
+</div>
+

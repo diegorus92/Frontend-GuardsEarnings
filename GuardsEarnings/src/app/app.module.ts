@@ -18,6 +18,7 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatTableModule} from '@angular/material/table';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatCardModule} from '@angular/material/card';
 
 
 
@@ -31,6 +32,9 @@ import { MAT_DATE_LOCALE, MatNativeDateModule } from '@angular/material/core';
 import { PrincipalComponent } from './_components/principal/principal/principal.component';
 import { GuardUpsertComponent } from './_components/guards/guard-upsert/guard-upsert.component';
 import { DialogAlertComponent } from './shared/dialog-alert/dialog-alert.component';
+import { TargetComponent } from './_components/targets/target/target.component';
+import { TargetListComponent } from './_components/targets/target-list/target-list.component';
+import { TargetUpsertComponent } from './_components/targets/target-upsert/target-upsert.component';
 
 
 
@@ -45,6 +49,9 @@ import { DialogAlertComponent } from './shared/dialog-alert/dialog-alert.compone
     PrincipalComponent,
     GuardUpsertComponent,
     DialogAlertComponent,
+    TargetComponent,
+    TargetListComponent,
+    TargetUpsertComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +72,8 @@ import { DialogAlertComponent } from './shared/dialog-alert/dialog-alert.compone
     MatTabsModule,
     MatTableModule,
     MatFormFieldModule,
-    MatDialogModule
+    MatDialogModule,
+    MatCardModule
   ],
   providers: [
     {provide: MAT_DATE_LOCALE, useValue: 'en-GB'}
