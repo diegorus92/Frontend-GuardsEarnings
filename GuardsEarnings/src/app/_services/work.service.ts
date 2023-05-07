@@ -17,4 +17,8 @@ export class WorkService {
   createWork(work:any):Observable<any>{
     return this.http.post(this._url+"/", work, {responseType: 'text'});
   }
+
+  deleteWork(id:number):Observable<any>{
+    return this.http.delete(this._url+"/"+id, {responseType:'text'});
+  }
 }

@@ -1,4 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { WorkService } from 'src/app/_services/work.service';
 
 @Component({
   selector: 'app-work-list',
@@ -8,10 +10,13 @@ import { Component, OnInit, Input } from '@angular/core';
 export class WorkListComponent implements OnInit {
 
 
-  constructor() { }
+  constructor(private workSevice:WorkService) { }
 
   @Input() works = null;
-  displayedColumns:string[] = ['Date', 'Target', 'Income', 'Outcome', 'Payment per Hour', 'Total Hours', 'Payment this Journey'];
+  @Output() deleteWorkEvent = new EventEmitter<number>();
+  displayedColumns:string[] = ['Date', 'Target', 'Income', 'Outcome', 'Payment per Hour', 'Total Hours', 'Payment this Journey', 'Delete'];
+  deleteIcon = faTrash;
+
 
   ngOnInit(): void {
     
@@ -73,5 +78,9 @@ export class WorkListComponent implements OnInit {
     }
 
     return acum;
+  }
+
+  deleteWork(id: number):void{
+    this.deleteWorkEvent.emit(id);
   }
 }

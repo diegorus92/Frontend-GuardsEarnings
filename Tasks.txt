@@ -1,4 +1,4 @@
--add Edit and Remove for Works into WorkList
+X {add Edit and Remove for Works into WorkList} -- DONE
 
 -Implement verification about create a new item (Work, Guard...etc)
 

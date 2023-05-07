@@ -1,5 +1,4 @@
-<p>guard works!</p>
-<p>Name: {{guard.Name}}</p>
+<h2><i>Guard: {{guard.Name}}</i></h2>
 
 <hr>
 <button mat-raised-button color="accent"
@@ -13,7 +12,7 @@
 </button>
 
 <div *ngIf="processedWorksDates">
-    <app-work-list [works]="processedWorksDates"></app-work-list>
+    <app-work-list [works]="processedWorksDates" (deleteWorkEvent)="deleteWork($event)"></app-work-list>
 </div>
 
 

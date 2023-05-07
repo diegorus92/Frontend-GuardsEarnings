@@ -1,4 +1,3 @@
-<p>work-list works!</p>
 
 <mat-tab-group *ngIf="works">
     <mat-tab [label]="work.year" *ngFor="let work of works"> 
@@ -49,6 +48,13 @@
                     <ng-container matColumnDef="Payment this Journey">
                         <th mat-header-cell *matHeaderCellDef> Total Payment this journey</th>
                         <td mat-cell *matCellDef="let element"> {{calculatePayPerDay(calculateWorkingTime(element.enterTime, element.outTime), element.target.payment) | currency}} </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Delete">
+                        <th mat-header-cell *matHeaderCellDef> Delete Work</th>
+                        <td mat-cell *matCellDef="let element">
+                            <fa-icon [icon]="deleteIcon" (click)="deleteWork(element.workId)"></fa-icon>
+                        </td>
                     </ng-container>
 
 

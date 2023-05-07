@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DateAdapter } from '@angular/material/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Guard } from 'src/_interfaces/IGuard';
 import { GuardService } from 'src/app/_services/guard.service';
+import { WorkService } from 'src/app/_services/work.service';
 import {Works} from 'src/assets/MockGuardWorks';
 
 @Component({
@@ -28,7 +29,11 @@ export class GuardComponent implements OnInit {
 
   processedWorksDates = null;
 
-  constructor(private route:ActivatedRoute, private guardService:GuardService) { }
+  constructor(
+    private route:ActivatedRoute,
+    private guardService:GuardService,
+    private workService:WorkService,
+    private navigation:Router) { }
 
   ngOnInit(): void {
 
@@ -41,7 +46,7 @@ export class GuardComponent implements OnInit {
     console.log("[GuarComponent] Months of a year: ", this.getMonthsOfYear(2024, this.guard.Works as any[]));
     */
     ///////////////////////////////////
-
+    
     this.route.queryParams.subscribe(params => {
       this.guardId = params['id'];
     })
@@ -70,6 +75,46 @@ export class GuardComponent implements OnInit {
   }
 
 
+  refresh():void{
+    console.log("Refreshing Guard Component");
+
+    this.guard = {
+      GuardId: 0,
+      Name: "string",
+      Surname: "string",
+      Email: "string",
+      Cellphone: "string",
+      Image: null,
+      Direction: "string",
+      Works: []
+  };
+
+    this.route.queryParams.subscribe(params => {
+      this.guardId = params['id'];
+    })
+    
+    if(this.guardId != 0){
+      this.guardService.getGuard(this.guardId).subscribe({
+        next: guard => {
+          this.guard = {
+            GuardId: guard.guardId,
+            Name: guard.name,
+            Surname: guard.surname,
+            Email: guard.email,
+            Cellphone: guard.cellphone,
+            Image: guard.image,
+            Direction: guard.direction,
+            Works: guard.works 
+          }
+
+          this.processedWorksDates = this.processDates(guard.works);
+        },
+
+        error: error => console.log("[GuardComponent]",error),
+        complete: () => console.log("[GuardComponent] get guard by id complete: ", this.guard)
+      })
+    }
+  }
   
   processDates(works:any[]):any{
   
@@ -128,5 +173,17 @@ export class GuardComponent implements OnInit {
     }
 
     return monthsOfYear;
+  }
+
+  deleteWork(id:number):void{
+    console.log("[GuardComponent] Work Id to delete: ", id);
+    this.workService.deleteWork(id).subscribe({
+      next: response => {
+        console.log("[GuardComponent] deleting work... ", response);
+        this.refresh();
+      },
+      error: error => console.log("[GuardComponent] error during deletion of WOrk", error),
+      complete: () => console.log("[GuardComponent] deletion of work complete!")
+    });
   }
 }
