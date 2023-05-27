@@ -85,6 +85,7 @@ export class WorkUpsertComponent implements OnInit {
     this.workForm = this.formBuilder.group({
       enterTime:['', Validators.required],
       outTime:['', Validators.required],
+      payment:[,Validators.required],
       target:['', Validators.required],
       journeyDate:['', Validators.required],
     });
@@ -126,6 +127,7 @@ export class WorkUpsertComponent implements OnInit {
               WorkId: 0,
               EnterTime: this.workForm.value['enterTime'].toString(),
               OutTime: this.workForm.value['outTime'].toString(),
+              Payment: this.workForm.value['payment'].toString(),
               NewGuardId: Number(this.guardId),
               NewTargetId: this.workForm.value['target'].targetId,
               NewJourneyId: this.journey.JourneyId!

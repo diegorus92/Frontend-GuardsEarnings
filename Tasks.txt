@@ -1,5 +1,8 @@
-X {add Edit and Remove for Works into WorkList} -- DONE
+-Add Edit and Remove for Works into WorkList
 
 -Implement verification about create a new item (Work, Guard...etc)
 
 -Implement security
+
+**DONE** Modify Work Entity to add a Price per Hour column, and deprecate Price column in Target Entity,
+	so the pay for each work can be diferent

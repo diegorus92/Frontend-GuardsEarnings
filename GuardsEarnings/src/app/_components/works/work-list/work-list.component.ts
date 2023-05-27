@@ -64,7 +64,7 @@ export class WorkListComponent implements OnInit {
     let acum = 0;
 
     for(let journey of monthWorked.datas){
-      acum += this.calculatePayPerDay(this.calculateWorkingTime(journey.enterTime, journey.outTime), journey.target.payment);
+      acum += this.calculatePayPerDay(this.calculateWorkingTime(journey.enterTime, journey.outTime), journey.payment);
     }
 
     return acum;

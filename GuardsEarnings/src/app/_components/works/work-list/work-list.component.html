@@ -35,7 +35,8 @@
                     <!-- Payment per Hour Column -->
                     <ng-container matColumnDef="Payment per Hour">
                         <th mat-header-cell *matHeaderCellDef> Payment per Hour </th>
-                        <td mat-cell *matCellDef="let element"> {{element.target.payment | currency}} </td>
+                        <!--<td mat-cell *matCellDef="let element"> {{element.target.payment | currency}} </td>-->
+                        <td mat-cell *matCellDef="let element"> {{element.payment | currency}} </td>
                     </ng-container>
 
                     <!-- Total Hours Column -->
@@ -47,7 +48,8 @@
                     <!-- Payment this Journey Column -->
                     <ng-container matColumnDef="Payment this Journey">
                         <th mat-header-cell *matHeaderCellDef> Total Payment this journey</th>
-                        <td mat-cell *matCellDef="let element"> {{calculatePayPerDay(calculateWorkingTime(element.enterTime, element.outTime), element.target.payment) | currency}} </td>
+                        <!--<td mat-cell *matCellDef="let element"> {{calculatePayPerDay(calculateWorkingTime(element.enterTime, element.outTime), element.target.payment) | currency}} </td>-->
+                        <td mat-cell *matCellDef="let element"> {{calculatePayPerDay(calculateWorkingTime(element.enterTime, element.outTime), element.payment) | currency}} </td>
                     </ng-container>
 
                     <ng-container matColumnDef="Delete">
