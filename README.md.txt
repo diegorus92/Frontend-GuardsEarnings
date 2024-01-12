@@ -1,0 +1,1 @@
+The goal of this small personal project is to calculate the monthly earnings of a security guard. The user adds the number of hours worked each day to an object, and the app accumulates the results for the current month. Naturally, every month is saved and organized within the app.
